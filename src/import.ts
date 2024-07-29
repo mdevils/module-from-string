@@ -99,19 +99,18 @@ Enable '--experimental-vm-modules' CLI option or replace it with dynamic 'import
   contextObject[IMPORTS] = {}
   const context = createContext(contextObject)
 
-  // @ts-expect-error: experimental
   const vmModule = new vm.SourceTextModule(transformedCode ?? code, {
     identifier: moduleFileURLString,
     context,
     initializeImportMeta(meta: ImportMeta) {
       meta.url = moduleFileURLString
     },
+    // @ts-expect-error: wrong type definition
     async importModuleDynamically(specifier: string) {
       return await import(resolveModuleSpecifier(specifier, dirname))
     }
   })
 
-  // @ts-expect-error: experimental
   const linker = async (specifier: string): Promise<vm.Module> => {
     const resolvedSpecifier = resolveModuleSpecifier(specifier, dirname)
     const targetModule = await import(resolvedSpecifier)
@@ -127,7 +126,6 @@ Enable '--experimental-vm-modules' CLI option or replace it with dynamic 'import
       .filter(exportedName => exportedName !== 'default')
       .join(', ')} } = ${IMPORTS}[${stringifiedSpecifier}];`
 
-    // @ts-expect-error: experimental
     return new vm.SourceTextModule(targetModuleContent, {
       identifier: resolvedSpecifier,
       context

@@ -10,7 +10,6 @@ export const isInESModuleScope = (): boolean => {
   }
 }
 
-// @ts-expect-error: experimental
 export const isVMModuleAvailable = (): boolean => vm.Module !== undefined
 
 const FILE_URL_PROTOCOL = 'file:'

@@ -49,7 +49,7 @@ export default code
     const res = await importFromStringFn(code)
     expect(res.default).toMatchInlineSnapshot(`
       "var Greet = /* @__PURE__ */ ((Greet2) => {
-        Greet2[Greet2[\\"Hi\\"] = 0] = \\"Hi\\";
+        Greet2[Greet2["Hi"] = 0] = "Hi";
         return Greet2;
       })(Greet || {});
       "

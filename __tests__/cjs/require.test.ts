@@ -41,7 +41,7 @@ exports.greet = code
   const res = requireFromString(code)
   expect(res.greet).toMatchInlineSnapshot(`
     "var Greet = /* @__PURE__ */ ((Greet2) => {
-      Greet2[Greet2[\\"Hi\\"] = 0] = \\"Hi\\";
+      Greet2[Greet2["Hi"] = 0] = "Hi";
       return Greet2;
     })(Greet || {});
     "
